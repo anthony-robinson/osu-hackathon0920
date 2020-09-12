@@ -1,0 +1,25 @@
+body {
+    background: url(Images/homePage3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f5f5dc;
+
+}
+
+html {
+    height: 100%;
+}
+
+h1 {
+    color: #f5f5dc;
+    font-size: 7em;
+
+}
+
+#content {
+    text-align: center;
+    padding-top: 5%;
+    /* height: 400px; */
+
+}
