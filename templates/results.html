@@ -3,6 +3,11 @@
 {% block body %}
     <h1>Results</h1>
     <p class="lead">
-        <br></p>
-    <div></div>
+        <br>
+    </p>
+    <div>
+        {% for file in files %}
+            <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
+        {% endfor %}
+    </div>
 {% endblock %}
