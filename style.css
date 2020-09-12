@@ -1,10 +1,8 @@
-body {
+body{
     background: url(Images/homePage3.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #f5f5dc;
-
 }
 
 html {
@@ -12,9 +10,14 @@ html {
 }
 
 h1 {
-    color: #f5f5dc;
     font-size: 7em;
+    color: #CC6600;
+    font-family: 'Patrick Hand', cursive;
+    /* opacity: .8; */
+}
 
+h5 {
+    color: white;
 }
 
 #content {
@@ -22,4 +25,9 @@ h1 {
     padding-top: 5%;
     /* height: 400px; */
 
+}
+
+#uploadBox{
+    padding-left: 30%;
+    padding-right: 30%;
 }
