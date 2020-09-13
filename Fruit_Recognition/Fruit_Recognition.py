@@ -5,12 +5,12 @@ import pandas as pd
 import cv2
 
 
-SOURCE = None
+SOURCE = '../uploads/apple.png'
 #SOURCE = Path of User's uploaded image
 
 #Google authentication client key
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = #/path/to/credentials.json
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credentials.json'
 
 path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 print(path)
@@ -19,7 +19,7 @@ print(path)
 #Create a hash set of fruits
 def load_fruits():
     fruit_set = set()
-    with open('./Fruits.txt') as infile:
+    with open('Fruits.txt') as infile:
         for line in infile:
             fruit_set.add(line.rstrip('\n').lower())
     return fruit_set
@@ -71,4 +71,4 @@ if __name__ == '__main__':
     fruits = load_fruits()
     print(fruits)
     #path TBD
-    print(classifyFruit('#path to image goes here',fruits))
+    print(classifyFruit(SOURCE,fruits))

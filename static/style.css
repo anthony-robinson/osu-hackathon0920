@@ -1,19 +1,35 @@
-body {
+body{
     background-image: url('/static/Images/homePage3.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #f5f5dc;
+    font-family: 'Patua One', cursive;
+    opacity: 0; 
+    transition: opacity 2.2s; 
 }
 
 html {
     height: 100%;
+
+}
+.error {
+    color:red;
+    background-color: rgba(255, 255, 255);
+}
+.bg {
+    background-color: rgba(255, 255, 255, .5);
+    font-weight: 500;
 }
 
 h1 {
-    color: #f5f5dc;
     font-size: 7em;
+    color: #CC6600;
+    text-shadow: 2px 2px 2px black;
+}
 
+h5 {
+    color: white;
+    text-shadow: 2px 2px 2px black;
 }
 
 #content {
@@ -21,4 +37,9 @@ h1 {
     padding-top: 5%;
     /* height: 400px; */
 
+}
+
+#uploadBox{
+    padding-left: 30%;
+    padding-right: 30%;
 }

@@ -1,6 +1,8 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+import requests
 from werkzeug.utils import secure_filename
+from Fruit_Recognition.Fruit_Recognition import*
 
 DEVELOPMENT_ENV  = True
 
@@ -12,14 +14,21 @@ app.config['UPLOAD_PATH'] = 'uploads'
 def index():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/error')
+def error():
+    return render_template('index.html', error='Fruit could not be recognized from image. Try another.')
 
 @app.route('/results')
 def results():
     files = os.listdir(app.config['UPLOAD_PATH'])
+    print(files)
     return render_template('results.html', files=files)
+
+@app.route('/results/<fruit>/<new_img>')
+def get_fruit(fruit, new_img):
+    response = requests.get('https://www.fruityvice.com/api/fruit/' + fruit, verify=False)
+    results = response.json()
+    return render_template('results.html', fruit=results, new_img=new_img)
 
 @app.route('/upload', methods=['POST'])
 def upload_files():
@@ -29,8 +38,14 @@ def upload_files():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config['UPLOAD_EXTENSIONS']:
             return redirect(url_for('index'))
-        uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
-    return redirect(url_for('results'))
+
+        new_image = os.path.join(app.config['UPLOAD_PATH'], filename)
+        uploaded_file.save(new_image)
+        rec = classifyFruit(new_image, load_fruits())
+        if rec is not None:
+            return redirect(url_for('get_fruit', fruit=rec, new_img=filename))
+        else:
+            return redirect(url_for('error'))
 
 @app.route('/uploads/<filename>')
 def upload(filename):
