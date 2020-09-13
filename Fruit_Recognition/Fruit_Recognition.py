@@ -70,4 +70,5 @@ def readImgUrl(img_url, client):
 if __name__ == '__main__':
     fruits = load_fruits()
     print(fruits)
+    #path TBD
     print(classifyFruit('#path to image goes here',fruits))
