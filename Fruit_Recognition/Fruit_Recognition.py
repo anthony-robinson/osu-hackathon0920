@@ -70,5 +70,4 @@ def readImgUrl(img_url, client):
 if __name__ == '__main__':
     fruits = load_fruits()
     print(fruits)
-    print(classifyFruit('/Users/Anthony/Downloads/fruits-360/test-multiple_fruits/raspberry5.jpg',fruits))
-    #print(readImgUrl(img_url, client))
+    print(classifyFruit('#path to image goes here',fruits))
