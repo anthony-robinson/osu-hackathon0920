@@ -14,9 +14,9 @@ app.config['UPLOAD_PATH'] = 'uploads'
 def index():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/error')
+def error():
+    return render_template('index.html', error='Fruit could not be recognized from image. Try another.')
 
 @app.route('/results')
 def results():
@@ -42,7 +42,10 @@ def upload_files():
         new_image = os.path.join(app.config['UPLOAD_PATH'], filename)
         uploaded_file.save(new_image)
         rec = classifyFruit(new_image, load_fruits())
-    return redirect(url_for('get_fruit', fruit=rec, new_img=filename))
+        if rec is not None:
+            return redirect(url_for('get_fruit', fruit=rec, new_img=filename))
+        else:
+            return redirect(url_for('error'))
 
 @app.route('/uploads/<filename>')
 def upload(filename):
