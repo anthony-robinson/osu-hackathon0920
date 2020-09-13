@@ -5,7 +5,7 @@ body{
     background-repeat: no-repeat;
     font-family: 'Patua One', cursive;
     opacity: 0; 
-    transition: opacity 2.5s; 
+    transition: opacity 2.2s; 
 }
 
 
@@ -16,7 +16,7 @@ html {
 
 h1 {
     font-size: 7em;
-    color: #10460C;
+    color: #CC6600;
     text-shadow: 2px 2px 2px black;
 }
 

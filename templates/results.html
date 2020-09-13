@@ -1,13 +1,13 @@
 {% extends 'main.html' %}
 
 {% block body %}
-    <h1>Results</h1>
+<div class="container text-center">
+        <h1>{{ fruit }}</h1>
     <p class="lead">
         <br>
     </p>
     <div>
-        {% for file in files %}
-            <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
-        {% endfor %}
     </div>
+</div>
+
 {% endblock %}
