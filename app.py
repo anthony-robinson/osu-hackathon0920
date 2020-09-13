@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+import requests
 from werkzeug.utils import secure_filename
 from Fruit_Recognition.Fruit_Recognition import*
 
@@ -23,9 +24,11 @@ def results():
     print(files)
     return render_template('results.html', files=files)
 
-@app.route('/results/<fruit>')
-def get_fruit(fruit):
-    return render_template('results.html', fruit=fruit)
+@app.route('/results/<fruit>/<new_img>')
+def get_fruit(fruit, new_img):
+    response = requests.get('https://www.fruityvice.com/api/fruit/' + fruit, verify=False)
+    results = response.json()
+    return render_template('results.html', fruit=results, new_img=new_img)
 
 @app.route('/upload', methods=['POST'])
 def upload_files():
@@ -39,7 +42,7 @@ def upload_files():
         new_image = os.path.join(app.config['UPLOAD_PATH'], filename)
         uploaded_file.save(new_image)
         rec = classifyFruit(new_image, load_fruits())
-    return redirect(url_for('get_fruit', fruit=rec))
+    return redirect(url_for('get_fruit', fruit=rec, new_img=filename))
 
 @app.route('/uploads/<filename>')
 def upload(filename):

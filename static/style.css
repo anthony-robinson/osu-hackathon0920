@@ -8,10 +8,14 @@ body{
     transition: opacity 2.2s; 
 }
 
-
 html {
     height: 100%;
 
+}
+
+.bg {
+    background-color: rgba(255, 255, 255, .5);
+    font-weight: 500;
 }
 
 h1 {

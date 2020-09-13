@@ -2,12 +2,19 @@
 
 {% block body %}
 <div class="container text-center">
-        <h1>{{ fruit }}</h1>
-    <p class="lead">
+        <h1>{{ fruit.name }}</h1>
         <br>
-    </p>
-    <div>
+    <div class="row my-2">
+        <div class="col-md-4 offset-md-1">
+            <img src="{{ url_for('upload', filename=new_img ) }}" alt="" width="250px">
+        </div>
+        <div class="bg col-md-4 bg offset-md-1 align-self-center">
+            {% for category, num in fruit.nutritions.items() %}
+            {{ category }}: {{num}} <br>
+            {% endfor %}
+        </div>
     </div>
+    <a href="/" class="btn btn-info">Search Again</a>
 </div>
 
 {% endblock %}
